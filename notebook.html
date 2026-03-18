@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Our Year – Daisy & Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #fff7fb;
+      --card: #ffffff;
+      --accent: #ff9ecb;
+      --accent-soft: #ffe0f0;
+      --text-main: #2b1b2f;
+      --text-soft: #6b4b6f;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe6f4 0, #fff7fb 40%, #ffeef8 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 16px;
+    }
+
+    .app {
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 18px 16px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--text-soft);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .tagline span.heart {
+      font-size: 0.9rem;
+    }
+
+    .layout {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    @media (min-width: 800px) {
+      .layout {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .left-column {
+        flex: 1.1;
+      }
+      .right-column {
+        flex: 0.9;
+        position: sticky;
+        top: 120px;
+      }
+    }
+
+    .playlist-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 18px;
+      border: 1px solid #ffe0f0;
+    }
+
+    .playlist-card h2 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .playlist-card h2 span {
+      font-size: 1.1rem;
+    }
+
+    .playlist-card p {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .months-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .months-nav a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #ffd0e8;
+      color: var(--text-soft);
+      background: #fff;
+      transition: all 0.18s ease;
+    }
+
+    .months-nav a:hover {
+      background: var(--accent-soft);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .month-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 16px 16px 18px;
+      margin-bottom: 14px;
+      border: 1px solid #ffe0f0;
+      scroll-margin-top: 110px;
+    }
+
+    .month-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .month-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .month-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-align: right;
+    }
+
+    .month-body {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      white-space: pre-line;
+    }
+
+    .month-body span.highlight {
+      background: linear-gradient(120deg, #ffe0f5, #fff);
+      padding: 0 3px;
+      border-radius: 6px;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 10px;
+    }
+
+    .footer-note span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Our Year Together</h1>
+      <p>Every month, every date, every little moment that made us us.</p>
+      <div class="tagline">
+        <span class="heart">♥</span>
+        <span>One year with my fiancé</span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <div class="left-column">
+        <section id="march">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">March</div>
+              <div class="month-subtitle">The month everything changed</div>
+            </div>
+            <div class="month-body">
+march, i will always love this month, because is the month my life changed, as i met u, my princess. i will always remember the first time i saw you. u were so beautiful, i thought i had no chance ever to be with you, but i had to try. u seemed like the one that was destined to be my wife, and now ik i am right. when we kissed for the first time, it felt like something out of a movie. i had so many butterflies. i was so happy that day. i felt like at the top of the world. then we had our second date in the record store, seeing u knowing so much about music and so many artists and all, made me realize how much cooler u were than me, and i just kept falling in love more and more. i had a lot of fun that day, even if ur dad was following us around tho. when your mom said u couldn't see me more, i cried on the ride back home, thinking all my fears were true, and it was too good to be true. luckily that wasn't true, and i got to see u again on the mall. we took the picture for our first post together. we explored the mall for the first time, out of the many that would happen till now. we kissed a lot in the photo booth hehe. then i got to see u in the park. i remember u didn't get permission at first, so i waited, but it seemed like i would have to leave, but then suddenly u told me u could come, and u walked all the way to the park just to see me. that's when i knew, and i had no doubts that u loved me so much since the beginning.
+            </div>
+          </article>
+        </section>
+
+        <section id="april">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">April</div>
+              <div class="month-subtitle">Closer to you</div>
+            </div>
+            <div class="month-body">
+april, at the start of this month, i remember i was in miami, as i was getting my stuff to move to tampa, as i was sure that i wanted to live so i never had to spend weeks without seeing you, and i am glad i took that decision. then we had our second movie date, which was the minecraft movie, which was so special, as we hadn't seen each other in two weeks. i remember that day so clearly, how beautiful u looked, how much fun we had. it was perfect. cuddling in the cinema for the first time was like reaching nirvana, and the gifts u gave me that day, i remember they made me cry. it was so beautiful. i felt so loved. i had such great time. then next date, we went to the pool in our parents house, and it was also really nice, just because we got to spend time together, even if i was so nervous cause of them. april was a good month. we started knowing each other more, and loving each other everyday more. i was also so much less worried, because my dream of us having a future together was starting to feel more and more real.
+            </div>
+          </article>
+        </section>
+
+        <section id="may">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">May</div>
+              <div class="month-subtitle">Beach & first times</div>
+            </div>
+            <div class="month-body">
+may, this month is also extremely special. this was the month we had our first time. i felt so connected to you, and i remember how much u smiled that day. i was extremely happy for u to be my first. but we also had one of my favorite dates of all time, which was the beach. it was so fun. it was like we were hugging all day. i felt so close to you, like i could hold you forever, and it made me so happy. i always hated the beach all my life, but that day made me change my mind. now i love the beach, as it makes me think of you, and how happy that day made me, and also all the times we have gone to the beach together. i also remember having biscuit that month. it was so nice taking care of him. it felt like i had a part of you with me all the time. i hugged it so tight every night. we also had our first date at the st pete mall. i will always love the picture of you in toys r us. it was so fun that day.
+            </div>
+          </article>
+        </section>
+
+        <section id="june">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">June</div>
+              <div class="month-subtitle">Summer & our engagement</div>
+            </div>
+            <div class="month-body">
+june was the start of summer, our most special time. summer we got to see each other so much, it made me happy. this is also when u started to show me more, when u had a big interest in the moment. during summer it was army hehe. u got many cool stuff. our first date this month was bonnet springs. i remember how beautiful u looked that day, and how nice it was to walk outside with u, but it was extremely hot. we got so sweaty, we had to go mall, and we got the first time we went urban air. it was a lot of fun. i really glad we did hehe. we also walked the mall in socks to get pizza hehe. this month we also had the most special mall date ever, as we got engaged. the beginning i knew i wanted to make sure u were mine forever, and getting engaged was the first step hehe. next we have to get married hehe. i love you. i got home so happy that day, as u were finally my fiancé. then we also had our first pool date at ur grandmas house. it was so fun. then i got to meet ur grandparents better. we also cuddled a lot this month. i miss cuddling with u so much.
+            </div>
+          </article>
+        </section>
+
+        <section id="july">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">July</div>
+              <div class="month-subtitle">Fireworks & shells</div>
+            </div>
+            <div class="month-body">
+july started extremely special with july 4th, or independence day. we went to the pier with ur grandparents and ate good. then we got to walk alone. i always remember the beautiful sky as we got onto the beach clothed, to collect some sea shells hehehe. then we sat there and watched all the beautiful fireworks, but i was more focused on watching my princess. such perfect day again. then two days later, we went to beach again, and it was so fun, and u gave my beloved pyparus and other nice gifts. ty, i love you muchoooo. u went back to lakeland for a week, and we went to that mall we hadn't in such a long time. it was nice, and we watched a nice movie and cuddled more hehe. then u went back to st pete, and we had the date i took u to goodwill and mall. i always remember this date because u tried that wedding dress, and wow, i cant wait to get married. u looked so beautiful princess. we got a matching necklace. we also matched nails hehe. i was a little sad because summer was almost over.
+            </div>
+          </article>
+        </section>
+
+        <section id="august">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">August</div>
+              <div class="month-subtitle">Your birthday month</div>
+            </div>
+            <div class="month-body">
+august, and to end this beautiful summer, it was ur birthday. i really hoped u liked ur gifts. i put all my love into them. i love u so much. i had such great time, and u got so many nice gifts, and food was really good hehe. i cant wait for ur next birthday. it was hard not seeing you as often as i was used to. u were busy more, but still i knew how much i loved you, and u loved me, and even if we dont see each other as much, that would never change. still, ofc, we had a couple dates this month, like on gf day, which was so fun. we went to get ice cream, we went to mall, and we had a lot of fun. and we also planned going skating, which we did, and it was so much fun, even if i fell a lot hehe. we also went to mall a couple times, which was a lot fun, and i felt so much better everytime i saw you. i love you so much daisy. cant wait for ur next birthday.
+            </div>
+          </article>
+        </section>
+
+        <section id="september">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">September</div>
+              <div class="month-subtitle">Your birthday & sharks</div>
+            </div>
+            <div class="month-body">
+september, my birthday month. first we had a mall date because u couldn't see me on my exact birthday, so we went to mall, which was a lot of fun, because they opened spirit halloween, and u were so happy, and me too, and we started getting excited about halloween hehe. and ofc next date was one of our most special ones. i loved going to the aquarium so much. i loved the photos of that day, and it made me so happy. i loved it. so many cool sharks too, and the beautiful gifts u gave me. ty so much again. ur the best ever. i love uuu hehe. then we had a really nice house date. u were in pjs, and u painted my face for the first time, and laughed so much, like an extreme amount. i remember i also gave u unicorn. i hope u have still. we also had the museum date, which was super nice walking around with u, even if ur dad was there. it was better than record store, cause it wasn't awkward, and we had great time. i loved this month. ty for making my month special. i love you.
+            </div>
+          </article>
+        </section>
+
+        <section id="october">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">October</div>
+              <div class="month-subtitle">Concerts & zombies</div>
+            </div>
+            <div class="month-body">
+october, this month started with a super nice day where u had no school, and we went to grandma pool, and we had so much fun. we got some snacks, and then chilled on the couch. unfortunately u spent a lot of this month in georgia. even though i was sad and missed u like hell, it was okay, because i knew we would get back to seeing each other more. just some weeks, and we came back with a bang hehe. u took me to my first concert, and omg trst is so peakkkk, and it was such a vibe being there with you. i remember it so special. i will never forget it. i loved it. even if second guy wasn't my vibe, it was still super cool. then even though u no love this day, i see it in a different light. halloween, i had never dressed up except when i was a baby. i always hated halloween, as i felt out of place, like everybody was having so much fun but not me, and i couldn't have fun. but this year it was different because of you. u made me dress up with u, and we were the perfect zombie husband and wife. we both looked great, and even though it wasn't super long, and ur dad kinda ruined it for u, i had such special time still, and i felt so happy being with u, having so much fun, and i will never forget that day.
+            </div>
+          </article>
+        </section>
+
+        <section id="november">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">November</div>
+              <div class="month-subtitle">HHN & FNAF</div>
+            </div>
+            <div class="month-body">
+november, we had halloween horror nights, best day of my life. we picked u up early, and u slept with me all the way till we got there. then u woke up, and i remember how happy u were. i got u the nice jurassic park lanyard, and we entered universal. we ate some nice pizza, and had a nice time. then we got quick to the entrance, and waited till it opened. we ran to fnaf, which the house was so fun. it looked realistic, and it was so cool, even if not scary. the terrifier line was so long, but so worth it. that was so peak. i remember how scary it was, but u were just having so much fun. then we walked around, and everything was so cool. i loved it. and omg how much u loved the 20s zombies hehe. it made me so happy to be able to get u this experience. cant wait to do it this year. we also went to transformers and the mummy rides. both were so much fun. i glad we spent that time together, and the ride back was a lot of fun, u in my lap. it all was heaven. we had a couple of really nice dates more in the mall and ur house, which i loved, and even though we couldn't spend thanksgiving together, it was such a perfect month.
+            </div>
+          </article>
+        </section>
+
+        <section id="december">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">December</div>
+              <div class="month-subtitle">Bins & New Year</div>
+            </div>
+            <div class="month-body">
+december, we had great dates like the first time we went to the bins. i remember how happy u were. u told me how happy it made u, and it was so nice. such a cool store. we spent a great time together. then we also went to the pool at ur grandma house, and even though it was kinda busy, it was still so much fun, and we got to spend some time together before i left for christmas eve. it was great. i sad we didn't spend christmas together, but at least we had that date where i brought ur gifts, and we opened them, and laid on couch. i was so happy to see u, cause i missed u so much my princess. then we got one of our best dates of all time. new years was so much fun walking around downtown, even with the cold, just having such a great time. even when we got lost, i loved spending the beginning of a new year with you. we got those delicious hot dogs. we walked around the pier. we asked the tv guy what they were doing, and we watched those beautiful fireworks together. i am so glad to have spent it with u daisy. ur my everything. i love you so much. i cant wait for all the years we are going to spend together.
+            </div>
+          </article>
+        </section>
+
+        <section id="january">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">January</div>
+              <div class="month-subtitle">Choosing each other</div>
+            </div>
+            <div class="month-body">
+january was not an easy month, as we saw each other early in the month, and had a nice date, but we both got sick after, and couldn't see each other for a bit. then my family didn't let me go out cause of ice. but that's the thing about love. sometimes it gets difficult, and it seems like everything is bad, but it's not. it's learning to choose ur partner everyday and every time. that's true love, and we got through it. as hard as it was, we did, and i am so glad we did, because daisy, through everything, ur my everything. i love you so much. i am willing to go through anything to make sure we get to spend our life together princess. i love you so much. pls never forget and never give up.
+            </div>
+          </article>
+        </section>
+
+        <section id="february">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">February</div>
+              <div class="month-subtitle">Valentine & normal again</div>
+            </div>
+            <div class="month-body">
+february, we finally got to see each other, and it was so refreshing being able to see my princess. we had a really nice date, but it was so needed for me to see ur face, to hold you, to kiss u, and for u to know how much i love you. it was perfect. then we had valentines day, which was perfect. i hope u liked my gifts. even if they were not the best, i tried. i love you. it was so nice to be outside again, as it was not as cold as it was before, and u did ur puzzles while i watched my princess. then we went to downtown, and we walked around, got some delicious food, went to some cool stores. u almost befriended a homeless guy, and we had perfect day. then we went to ur house, ate some burgers, watched some youtube, and hugged mucho, and cuddled mucho. we also had a super nice date again in ur house, where we watched the train movie, and we spent a nice time together. i love chilling with my princess. then we went park. it was so nice walking around and being with you my princess. sorry i hurt u tho. i never want to. always tell me if ur hurting. then we went to ur house, and had nice time before i had to go. this month was so special to me, as we finally were able to see each other, and it felt like normalcy was back, and i loved it so much. i am glad u made me so happy this month.
+            </div>
+          </article>
+        </section>
+
+        <section id="march-oneyear">
+          <article class="month-card">
+            <div class="month-header">
+              <div class="month-title">March · 1 Year</div>
+              <div class="month-subtitle">Our first year complete</div>
+            </div>
+            <div class="month-body">
+march, once again we are back in march, one year since my life changed completely, and met the love of my life. i thank you so much for everything baby. u really have made me the happiest man ever to be with you for this whole year, and i really hope, and i'll do anything so we get to spend our whole life together. ty for all the beautiful memories, and ik we will keep making them. i am so excited for our special week together. it will be great. i have no doubts, and i cant wait princess. ik i didn't talk about all dates or special memories, but i just wanted to make this to remind you princess, that through everything we are great, and we have had the most special year ever. i'll never give up on you. i love you daisy. ty once again for the most special year, my fiancé.
+            </div>
+          </article>
+        </section>
+
+        <p class="footer-note">
+          This whole page is just a long way of saying: <span>i love you, Daisy.</span>
+        </p>
+      </div>
+
+      <aside class="right-column">
+        <div class="playlist-card">
+          <h2><span>♪</span> Our Year Playlist</h2>
+          <p>Press play and read through our months while the soundtrack of us plays in the background.</p>
+          <iframe data-testid="embed-iframe" style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/3s2TSNu1VSJXqpXvy2RPlp?utm_source=generator"
+            width="100%" height="352" frameborder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+
+          <div class="months-nav">
+            <a href="#march">March</a>
+            <a href="#april">April</a>
+            <a href="#may">May</a>
+            <a href="#june">June</a>
+            <a href="#july">July</a>
+            <a href="#august">August</a>
+            <a href="#september">September</a>
+            <a href="#october">October</a>
+            <a href="#november">November</a>
+            <a href="#december">December</a>
+            <a href="#january">January</a>
+            <a href="#february">February</a>
+            <a href="#march-oneyear">1 Year</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</body>
+</html>
